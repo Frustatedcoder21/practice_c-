@@ -37,4 +37,18 @@ bool detect_loop(Node* head){
     }
     return 0;
 }
+// solve using slow pointer and fast pointer
+bool detect_loop(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    while (fast!=NULL && fast->next!=NULL) //  fast!=NULL is for odd cases and fast->next!=NULL is for even cases
+    {
+        slow=slow->next;
+        fast=fast->next;
+        if(slow==fast){
+            return 1;
+        }
+    } return 0;
+    
+}
 
