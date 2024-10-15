@@ -1,54 +1,60 @@
 
 #include <iostream>
 using namespace std;
-class stack{
-    int *arr ,size,top;
+class Stack{
+    int *arr;  // dynamically allocated array
+    int top;  // top element pointer
+    int size;  //size of the stack 
     public:
-    stack(int s){
+    Stack(int s){   // first initialisation
         size=s;
         top=-1;
-        arr=new int[size];
+        arr=new int[s];
     }
-    void push(int ele){
-         if(top==size-1){
-             cout<<"stack overflow\n";
-         }else{
-         
-             arr[++top]=ele;
-             cout<<ele<<" is pushed\n";
-         }
-         
+    void push(int val){  
+        if(top==size-1){
+            cout<<"Stack Overflow"<<endl;
+            return;
+        }else{
+            top++;  // increase then push 
+            arr[top]=val;
+            cout<<val<<" pushed into the stack"<<endl;
+        }
     }
     void pop(){
         if(top==-1){
-            cout<<"stack underflow\n";
+            cout<<"Stack Underflow"<<endl;
+            return;
         }else{
-            
-            cout<<arr[top]<<" is poped\n";
-            top--;
+            cout<<arr[top]<<" poped out from the stack"<<endl;
+            top--;  // don't have to delete the element just move back top
         }
     }
-    void peek(){
+    int peek(){
         if(top==-1){
-            cout<<"stack is empty\n";
-        }
-        cout<<arr[top]<<" is top element\n";
+            cout<<"Stack Underflow"<<endl;
+            return -1;
+        }else
+        return arr[top];
     }
-    void Issize(){
-        cout<<top+1<<" is the size of the stack\n";
+    bool isEmpty(){
+        return top==-1;
+    }
+    int isSize(){
+    return top+1;
     }
 };
-
 int main()
-{ stack s1(5);
- s1.push(1);
- s1.push(2);
- s1.push(3);
- s1.peek();
- s1.Issize();
- s1.pop();
- s1.peek();
-  s1.Issize();
-
- 
+{
+    Stack s(5);
+    s.push(4);
+    s.push(6);
+    s.push(2);
+    s.pop();
+    s.pop();
+    s.pop();
+    cout<<s.isEmpty();
+    if(s.isSize()>0) // peek should be check if  the array is not empty to avoid the clash if negative number is present
+    cout<<s.peek();
+    
 }
