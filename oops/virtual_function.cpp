@@ -1,36 +1,22 @@
-
-#include <iostream>
+#include<iostream>
 using namespace std;
-class base{
-    public:
-/* virtual function */   virtual void display(){  // it executes during the runtime due to virtal keyword
-        cout<<"I am displaying Base class\n";
-    }
-    void show(){
-        cout<<"Hello Base show\n";
-    }           
+
+class vehicle{
     
-};
-class child:public base
-{
     public:
-    void display(){  // overriden function
-        cout<<"I am displaying child class\n";
-    }
-    void show(){  //overriden function
-        cout<<"Hello child show\n";
-    }
-    void greet(){ // non overriden function
-        cout<<"Say hello";
+  virtual void print(){ // after applying the virtual keyword , which class print will run will be decided at runtime
+        cout<<"bdummmmmmm";
     }
 };
-int main()
-{  base *b; // pointer to base class
-  child c; //object of child class
-  b=&c; //
-    b->display();
-    b->show();
-    // b->greet();
-    
-    
+class car: public vehicle{
+    public:
+    void print(){
+        cout<<"hudddd";
+    }
+};
+
+int main(){
+    vehicle *v= new car();  // here  v is the pointer of vehicle so vehicle print will be set to call during compile time
+    // new car() is runtime code
+    v->print();
 }
